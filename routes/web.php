@@ -19,6 +19,7 @@ Route::get('detracikans/data', ['uses'=>'DetRacikanController@data', 'as'=>'detr
 Route::get('stoks/data', ['uses'=>'StokController@data', 'as'=>'stoks.data']);
 Route::get('detracikans/{racikan}/racik', ['uses'=>'DetRacikanController@racikan', 'as'=>'detracikans.racikan']);
 Route::get('transactions/cari', ['uses'=>'TransactionController@getData', 'as'=>'transactions.cari']);
+Route::get('transactions/stok', ['uses'=>'TransactionController@getStok', 'as'=>'transactions.stok']);
 // Route::get('obats', ['uses'=>'ObatsController@index', 'as'=>'obats.index']);
 Route::resources([
     'obats' =>'ObatsController',

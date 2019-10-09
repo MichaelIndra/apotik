@@ -51,9 +51,9 @@
                         <div class="col-md-2"></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-2"><select class="namabrg form-control" style="width:150px;" name="namabrg"></select></div>
-                        <div class="col-md-2"><input type="text" class="form-control" /></div>
-                        <div class="col-md-2"><input type="text" class="form-control" /></div>
+                        <div class="col-md-2"><select  class="namabrg form-control" id="namabrg" style="width:150px;" name="namabrg"></select></div>
+                        <div class="col-md-2"><input type="text" id="stok" class="stok form-control" /></div>
+                        <div class="col-md-2"><input type="text" id="hargasatuan" class="hargasatuan form-control" /></div>
                         <div class="col-md-2"><input type="text" class="form-control" /></div>
                         <div class="col-md-2"><input type="text" class="form-control" /></div>
                         <div class="col-md-2"><button>Add</button></div>
@@ -117,22 +117,67 @@
         $('.namabrg').select2({
             placeholder: 'Nama item...',
             ajax: {
-            url: "{{ route('transactions.cari') }}",
-            dataType: 'json',
-            delay: 250,
-            processResults: function (data) {
-                return {
-                results:  $.map(data, function (item) {
+                url: "{{ route('transactions.cari') }}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data) {
                     return {
-                    text: item.nama_obat,
-                    id: item.id
-                    }
-                })
-                };
+                        results:  $.map(data, function (item) {
+                            return {
+                            text: item.nama_obat,
+                            id: item.obat_id
+                            }
+                        })
+                    };
             },
             cache: true
             }
         });
+        $('#namabrg').on('select2:select', function (e) {
+            var data = e.params.data.id;
+            var stok=0; harga = 0;
+            console.log(data);
+            $.ajax({
+                type : "GET",
+                url : "{{ route('transactions.stok') }}",
+                data : { q:data },
+                datatype : 'JSON',
+                success : function(dt){
+                            //console.log(dt);
+                            // console.log(dt[0].stok);
+                            if(dt[0] != null){
+                                stok = dt[0].stok;
+                                harga = dt[0].harga;     
+                                $("#stok").val(stok);
+                                $("#hargasatuan").val(harga);
+                            }else{
+                                alert('Harga atau stok tidak tersedia');
+                            }
+                        },
+                error: function(jqXHR, exception) {
+                        if (jqXHR.status === 0) {
+                            alert('Not connect.\n Verify Network.');
+                        } else if (jqXHR.status == 404) {
+                            alert('Requested page not found. [404]');
+                        } else if (jqXHR.status == 500) {
+                            alert('Internal Server Error [500].');
+                        } else if (exception === 'parsererror') {
+                            alert('Requested JSON parse failed.');
+                        } else if (exception === 'timeout') {
+                            alert('Time out error.');
+                        } else if (exception === 'abort') {
+                            alert('Ajax request aborted.');
+                        } else {
+                            alert('Uncaught Error.\n' + jqXHR.responseText);
+                        }
+        }    
+
+            });
+        });
+        $(document).ready(function(){
+            
+        });    
+
     </script>
     
 @endsection
