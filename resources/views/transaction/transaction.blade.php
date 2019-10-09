@@ -52,8 +52,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-2"><select  class="namabrg form-control" id="namabrg" style="width:150px;" name="namabrg"></select></div>
-                        <div class="col-md-2"><input type="text" id="stok" class="stok form-control" /></div>
-                        <div class="col-md-2"><input type="text" id="hargasatuan" class="hargasatuan form-control" /></div>
+                        <div class="col-md-2"><input type="text" id="stok" class="stok form-control" disabled/></div>
+                        <div class="col-md-2"><input type="text" id="hargasatuan" class="hargasatuan form-control" disabled/></div>
                         <div class="col-md-2"><input type="text" class="form-control" /></div>
                         <div class="col-md-2"><input type="text" class="form-control" /></div>
                         <div class="col-md-2"><button>Add</button></div>
@@ -143,13 +143,21 @@
                 data : { q:data },
                 datatype : 'JSON',
                 success : function(dt){
-                            //console.log(dt);
+                            console.log(dt);
                             // console.log(dt[0].stok);
                             if(dt[0] != null){
-                                stok = dt[0].stok;
-                                harga = dt[0].harga;     
-                                $("#stok").val(stok);
-                                $("#hargasatuan").val(harga);
+                                if(dt[0].stok == 0 || dt[0].stok == null)
+                                {
+                                    alert('Stok tidak tersedia');
+                                    $("#stok").val('');
+                                    $("#hargasatuan").val('');
+                                }else{
+                                    stok = dt[0].stok;
+                                    harga = dt[0].harga;     
+                                    $("#stok").val(stok);
+                                    $("#hargasatuan").val(harga);
+                                }
+                                
                             }else{
                                 alert('Harga atau stok tidak tersedia');
                             }

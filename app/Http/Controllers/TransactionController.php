@@ -21,6 +21,7 @@ class TransactionController extends Controller
             $query = DB::table('obats')
                 ->where('nama_obat', 'LIKE', "%{$nama}%")
                 ->where('status', '1')
+                ->where('kategori', '=', 'OBAT')
                 ->get(); 
             return response()->json($query);        
 
@@ -39,7 +40,7 @@ class TransactionController extends Controller
                 ->join('harga_obats', 'stoks.obat_id', '=', 'harga_obats.obat_id')
                 ->where('stoks.obat_id',$obt_id)
                 ->where('harga_obats.tgl_awal', '<', $now)
-                ->select('stoks.*', 'harga_obats.harga')
+                ->select('stoks.obat_id', 'harga_obats.harga', DB::raw('SUM(stoks.stok) AS stok'))
                 ->get();
             return response()->json($query);        
 
