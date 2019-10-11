@@ -16,7 +16,7 @@ class ObatsController extends Controller
         'kategori' => ['required']
     ];
     public function index(){
-        return view('obat.dataobat');
+        return view('obat.dataobat', ['title'=>'OBAT']);
     }
 
     public function data(Datatables $datatables){
@@ -47,7 +47,7 @@ class ObatsController extends Controller
     }
 
     public function create(){
-        return view('obat.create');
+        return view('obat.create', ['title'=>'OBAT']);
     }
 
     public function edit($id){

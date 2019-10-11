@@ -1,4 +1,4 @@
-@extends('stok.index')
+@extends('index')
 
 @section('head')
     <h2>Stok Obat </h2>

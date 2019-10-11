@@ -1,4 +1,4 @@
-@extends('obat.index')
+@extends('index')
 
 @section('content')
     <div class ="panel panel-default">

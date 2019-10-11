@@ -20,6 +20,8 @@ Route::get('stoks/data', ['uses'=>'StokController@data', 'as'=>'stoks.data']);
 Route::get('detracikans/{racikan}/racik', ['uses'=>'DetRacikanController@racikan', 'as'=>'detracikans.racikan']);
 Route::get('transactions/cari', ['uses'=>'TransactionController@getData', 'as'=>'transactions.cari']);
 Route::get('transactions/stok', ['uses'=>'TransactionController@getStok', 'as'=>'transactions.stok']);
+Route::get('transactions/addcart', ['uses'=>'TransactionController@cart_add', 'as'=>'transactions.cartadd']);
+Route::get('transactions/delall', ['uses'=>'TransactionController@destroy', 'as'=>'transactions.destroy']);
 // Route::get('obats', ['uses'=>'ObatsController@index', 'as'=>'obats.index']);
 Route::resources([
     'obats' =>'ObatsController',

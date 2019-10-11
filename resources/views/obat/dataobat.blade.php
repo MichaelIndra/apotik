@@ -1,4 +1,4 @@
-@extends('obat.index')
+@extends('index')
 
 @section('head')
     <h2>Master Obat </h2>

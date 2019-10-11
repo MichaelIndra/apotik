@@ -48,7 +48,7 @@ class StokController extends Controller
     }
     public function index()
     {
-        return view('stok.datastok');
+        return view('stok.datastok' , ['title'=>'Stok']);
     }
 
     /**
@@ -62,7 +62,7 @@ class StokController extends Controller
                     ->where('status','=','1')
                     ->where('kategori', '<>', 'MRACIK')
                     ->pluck('nama_obat','obat_id');
-        return view('stok.create')->with('obt', $namaobat);
+        return view('stok.create')->with(['obt'=> $namaobat, 'title'=>'Stok']);
     }
 
     /**

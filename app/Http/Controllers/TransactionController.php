@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Carbon\Carbon;
+use Cart;
 
 class TransactionController extends Controller
 {
     public function index()
     {
-        return view('transaction.transaction');
+        return view('transaction.transaction', ['title'=>'Transaksi']);
     }
 
     public function getData(Request $request){
@@ -45,6 +46,45 @@ class TransactionController extends Controller
             return response()->json($query);        
 
         }
+    }
+
+    public function cart_add(Request $request){
+        $qty = (int) $request->input('qty');
+        $harga = (int) $request->input('harga'); 
+        $totharga = $qty * $harga;
+        $nama = $request->input('nama');
+        $data = array(
+            'id' => $request->input('id'),
+            'price' => $harga,
+            'hargasatuan' => $harga,
+            'name' => $nama,
+            'quantity' => $qty
+        );
+        Cart::add($data);
+        return response()->json($data, 200);
+    }
+
+    public function cart_contents()
+    {
+        $cartCollection = Cart::getContent();
+        $cartCollection->count();
+ 
+        // transformations
+        return $cartCollection->toArray();
+        
+         $cartCollection->toJson();
+    }
+
+    public function destroy($rowid)
+    {
+        Cart::remove($rowid);
+        return redirect('transactions')->with('message', 'Berhasil hapus keranjang');
+    }
+
+    public function removeall()
+    {
+        Cart::clear();
+        return Redirect::to('/transactions');
     }
 
 }

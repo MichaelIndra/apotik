@@ -23,7 +23,7 @@ class HargaObatController extends Controller
      */
     public function index()
     {
-        return view('hargaobat.datahargaobat');
+        return view('hargaobat.datahargaobat', ['title'=>'Harga Obat']);
     }
 
     /**
@@ -36,7 +36,7 @@ class HargaObatController extends Controller
         $namaobat = Obat::orderBy('nama_obat')
                     ->where('status','=','1')
                     ->pluck('nama_obat','obat_id');
-        return view('hargaobat.create')->with('obt', $namaobat);
+        return view('hargaobat.create')->with(['obt' => $namaobat, 'title'=>'Harga Obat']);
     }
 
     /**

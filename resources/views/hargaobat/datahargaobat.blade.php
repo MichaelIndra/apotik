@@ -1,4 +1,4 @@
-@extends('hargaobat.index')
+@extends('index')
 
 @section('head')
     <h2>Harga Obat </h2>

@@ -1,4 +1,4 @@
-@extends('racikan.index')
+@extends('index')
 
 @section('head')
     <h2>Master Racikan </h2>

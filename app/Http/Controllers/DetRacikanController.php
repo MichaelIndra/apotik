@@ -64,7 +64,7 @@ class DetRacikanController extends Controller
      */
     public function index()
     {
-        return view('racikan.detracikanobat');
+        return view('racikan.detracikanobat', ['title'=>'Racikan']);
     }
 
     /**
@@ -78,7 +78,7 @@ class DetRacikanController extends Controller
                     ->where('status','=','1')
                     ->where('kategori','=','RACIKAN')
                     ->pluck('nama_obat','obat_id');
-        return view('racikan.create')->with('obt', $namaobat);
+        return view('racikan.create')->with(['obt'=>$namaobat, 'title'=>'Racikan' ]);
     }
 
     /**
