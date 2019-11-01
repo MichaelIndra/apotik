@@ -23,7 +23,7 @@ class CreateTransaksiTable extends Migration
             $table->string('status', 10);
             $table->date('tgl_transaksi');
             $table->string('no_rekap', 16);
-            $table->string('jenis', 3);
+            $table->string('jenis', 3);// nanti ganti 7 ya
             $table->timestamps();
         });
     }

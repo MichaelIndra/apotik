@@ -50,7 +50,7 @@ class DetRacikanController extends Controller
         return $datatables->of($builder)
             ->addColumn('action', function ($data) {
                 return 
-                "<button onclick=show('$data->obat_id'); type='button' class='btn btn-circle btn-danger '><i class='glyphicon glyphicon-alert'></i>Racikan</button>";
+                "<button onclick=show('$data->obat_id'); type='button' class='btn btn-circle btn-danger '>Racikan</button>";
                 
             })
             ->rawColumns(['action'])

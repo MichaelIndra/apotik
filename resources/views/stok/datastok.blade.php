@@ -1,7 +1,9 @@
 @extends('index')
 
 @section('head')
-    <h2>Stok Obat </h2>
+    <div class="jumbotron">
+        <h2>Stok Obat</h2>
+    </div>    
     <br>
     <a href="{{route('stoks.create')}}" class="btn btn-info ml-3" id="create-new-user">Tambah Stok Obat</a>
     <br><br>

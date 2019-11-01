@@ -1,10 +1,13 @@
 @extends('index')
 
 @section('head')
-    <h2>Master Obat </h2>
+    <div class="jumbotron">
+        <h2>Master Obat</h2>
+    </div>
     <br>
     <a href="{{route('obats.create')}}" class="btn btn-info ml-3" id="create-new-user">Tambah Data Obat</a>
     <br><br>
+    
 @endsection
 
 @section('content')

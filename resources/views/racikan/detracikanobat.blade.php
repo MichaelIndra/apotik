@@ -1,7 +1,9 @@
 @extends('index')
 
 @section('head')
-    <h2>Master Racikan </h2>
+    <div class="jumbotron">
+        <h2>Master Racikan</h2>
+    </div>    
     <br>
     <a href="{{route('detracikans.create')}}" class="btn btn-info ml-3" id="create-new-user">Tambah Data Racikan</a>
     <br><br>
@@ -53,6 +55,7 @@
 @endsection
 
 @section('script')
+
     <script>
         
         function show(id){

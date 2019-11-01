@@ -1,7 +1,9 @@
 @extends('index')
 
 @section('head')
-    <h2>Harga Obat </h2>
+    <div class="jumbotron">
+        <h2>Harga Obat</h2>
+    </div>
     <br>
     <a href="{{route('hargaobats.create')}}" class="btn btn-info ml-3" id="create-new-user">Tambah Data Harga Obat</a>
     <br><br>
